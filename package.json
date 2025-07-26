@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node build/server.js",
     "build": "tsc -p tsconfig.json",
-    "dev": "tsx watch ./src/server.ts"
+    "dev": "tsx watch ./src/server.ts",
+    "worker": "tsx watch ./src/workers/EmailWorker.ts"
   },
   "keywords": [],
   "author": "guicoelhodev",
@@ -19,6 +20,8 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@bull-board/api": "^6.12.0",
+    "@bull-board/express": "^6.12.0",
     "bullmq": "^5.56.7",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",

@@ -3,7 +3,7 @@ import IORedis from "ioredis";
 
 export class RedisClient {
 	static instance: RedisClient;
-	redis!: IORedis;
+	private redis!: IORedis;
 
 	constructor() {
 		if (RedisClient.instance) {
@@ -25,5 +25,16 @@ export class RedisClient {
 
 		RedisClient.instance = this;
 	}
-}
 
+	public static getInstance(): RedisClient {
+		if (!RedisClient.instance) {
+			RedisClient.instance = new RedisClient();
+		}
+
+		return RedisClient.instance;
+	}
+
+	public getClient(): IORedis {
+		return this.redis;
+	}
+}
