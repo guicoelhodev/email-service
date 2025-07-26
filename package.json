@@ -1,0 +1,20 @@
+{
+  "name": "email-service",
+  "version": "1.0.0",
+  "description": "Project created to send emails by api",
+  "main": "index.js",
+  "scripts": {
+    "start": "node build/server.js",
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx watch ./src/server.ts"
+  },
+  "keywords": [],
+  "author": "guicoelhodev",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
+  }
+}
