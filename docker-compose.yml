@@ -7,6 +7,5 @@ services:
       - "${PORT}:${PORT}"
     volumes:
       - .:/app
-      - /app/node_modules
     environment:
       - PORT=${PORT}

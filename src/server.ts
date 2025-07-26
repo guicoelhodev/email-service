@@ -1,6 +1,15 @@
-import 'dotenv/config';
-import { test } from "./test/test";
+import "dotenv/config";
+import express from "express";
 
-console.log(`Hello docker-compose, running on ${process.env.PORT}`);
+const app = express();
 
-test();
+const PORT = process.env.PORT || 3000;
+
+app.get("/", (_, response) => {
+	console.log('Hello friend')
+	response.status(200).send({ message: "Hello world" });
+});
+
+app.listen(PORT, () => {
+	console.log(`Server is running on ${PORT}`);
+});
