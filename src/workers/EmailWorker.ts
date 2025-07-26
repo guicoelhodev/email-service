@@ -11,10 +11,8 @@ export class EmailWorker {
 
 		this.worker = new Worker(
 			"email",
-			async (job: Job) => {
-				await new Promise((resolve) => setTimeout(resolve, 2000));
-
-				console.log(`process email job:`, job);
+			async () => {
+				await new Promise((resolve) => setTimeout(resolve, 10000));
 			},
 			{ connection },
 		);

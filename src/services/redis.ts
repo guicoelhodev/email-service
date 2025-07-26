@@ -13,6 +13,7 @@ export class RedisClient {
 		this.redis = new IORedis({
 			host: process.env.REDIS_HOST,
 			port: 6379,
+			maxRetriesPerRequest: null
 		});
 
 		this.redis.on("connect", () => {
