@@ -11,8 +11,7 @@ app.use("/admin/queues", serverAdapter.getRouter());
 const PORT = process.env.PORT || 3000;
 
 app.get("/", (_, response) => {
-	console.log("Hello friend");
-	response.status(200).send({ message: "Hello world" });
+	response.status(200).send({ message: "Hello world 1" });
 });
 
 app.post("/send-email", async (request, response) => {

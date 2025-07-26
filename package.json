@@ -4,10 +4,11 @@
   "description": "Project created to send emails by api",
   "main": "index.js",
   "scripts": {
-    "start": "node build/server.js",
     "build": "tsc -p tsconfig.json",
     "dev": "tsx watch ./src/server.ts",
-    "worker": "tsx watch ./src/workers/index.ts"
+    "worker": "tsx watch ./src/workers/index.ts",
+    "start": "node build/server.js",
+		"start:worker": "node build/workers/index.js"
   },
   "keywords": [],
   "author": "guicoelhodev",

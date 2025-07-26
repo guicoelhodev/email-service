@@ -1,0 +1,23 @@
+services:
+  api:
+    build: .
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      - PORT=${PORT}
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_HOST=${REDIS_HOST}
+    depends_on:
+      - redis
+  worker:
+    build: .
+    command: npm run build:worker
+    environment:
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_HOST=${REDIS_HOST}
+    depends_on:
+      - redis
+  redis:
+    image: redis:7
+    ports:
+      - "${REDIS_PORT}:6379"
