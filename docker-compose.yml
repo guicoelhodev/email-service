@@ -9,3 +9,11 @@ services:
       - .:/app
     environment:
       - PORT=${PORT}
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_HOST=${REDIS_HOST}
+    depends_on:
+      - redis
+  redis:
+    image: redis:7
+    ports:
+      - "${REDIS_PORT}:6379"
