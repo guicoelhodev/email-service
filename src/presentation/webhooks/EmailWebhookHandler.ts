@@ -20,7 +20,7 @@ export class EmailWebhookHandler {
         statusCode: 200,
         body: {
           message: "Email queued successfully",
-          emailId,
+          data: { id: emailId },
         },
       };
     } catch (error) {
