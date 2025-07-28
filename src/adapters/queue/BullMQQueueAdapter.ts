@@ -1,19 +1,26 @@
 import { QueueService } from "@/core/ports/QueueService";
+import { QueueRegistry } from "@/shared/QueueRegistry";
 import { Queue } from "bullmq";
 
 export class BullMQQueueAdapter implements QueueService {
-  private queue: Queue;
+	private queue: Queue;
 
-  constructor(queueName: string) {
-    this.queue = new Queue(queueName, {
-      connection: {
-        host: process.env.REDIS_HOST,
-        port: parseInt(process.env.REDIS_PORT!),
-      },
-    });
-  }
+	constructor(queueName: string) {
+		this.queue = new Queue(queueName, {
+			connection: {
+				host: process.env.REDIS_HOST,
+				port: parseInt(process.env.REDIS_PORT!),
+			},
+		});
 
-  async addJob(jobName: string, data: any) {
-    await this.queue.add(jobName, data);
-  }
+		QueueRegistry.register(queueName, this.queue);
+	}
+
+	async addJob(jobName: string, data: any) {
+		await this.queue.add(jobName, data);
+	}
+
+	getQueue() {
+		return this.queue;
+	}
 }

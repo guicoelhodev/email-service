@@ -9,7 +9,6 @@ export class SendEmailFactory {
 
   build() {
     const queueAdapter = new BullMQQueueAdapter("email");
-
     const emailService = new EmailService(queueAdapter);
     const emailWebhookHandler = new EmailWebhookHandler(emailService);
 
