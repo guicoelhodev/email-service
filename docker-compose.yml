@@ -7,6 +7,7 @@ services:
       - "${PORT}:${PORT}"
     volumes:
       - .:/app
+      - /app/node_modules
     environment:
       - PORT=${PORT}
       - REDIS_PORT=${REDIS_PORT}
@@ -19,7 +20,8 @@ services:
       dockerfile: Dockerfile.dev
     volumes:
       - .:/app
-    command: npm run worker
+      - /app/node_modules
+    command: echo 'worker'
     environment:
       - REDIS_PORT=${REDIS_PORT}
       - REDIS_HOST=${REDIS_HOST}

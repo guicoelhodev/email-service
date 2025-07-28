@@ -14,6 +14,7 @@ async function server() {
 	const dashboard = new BullBoardAdapter();
 	dashboard.create(QueueRegistry.getAll());
 
+	express.use("/admin/queues", dashboard.getRouter());
 	//
 	await express.start(port);
 
