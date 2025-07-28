@@ -1,7 +1,7 @@
 import { QueueService } from "@/core/ports/QueueService";
 import { Queue } from "bullmq";
 
-export class BullMQAdapter implements QueueService {
+export class BullMQQueueAdapter implements QueueService {
   private queue: Queue;
 
   constructor(queueName: string) {
