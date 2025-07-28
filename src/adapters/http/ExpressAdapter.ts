@@ -26,6 +26,7 @@ export class ExpressAdapter implements HttpService {
 
   async stop() {
     if (this.server) {
+      console.log("Received SIGTERM, shutting down...");
       this.server.close();
     }
   }
