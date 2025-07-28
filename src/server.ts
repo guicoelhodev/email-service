@@ -21,6 +21,10 @@ async function server() {
 	process.on("SIGTERM", async () => {
 		await express.stop();
 	});
+
+	process.on("SIGINT", async () => {
+		await express.stop();
+	});
 }
 
 server().catch(console.error);

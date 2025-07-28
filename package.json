@@ -6,9 +6,9 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "dev": "tsx watch ./src/server.ts",
-    "worker": "tsx watch ./src/workers/index.ts",
+    "worker": "tsx watch ./src/worker.ts",
     "start": "node build/server.js",
-    "start:worker": "node build/workers/index.js"
+    "start:worker": "node build/worker.ts"
   },
   "keywords": [],
   "author": "guicoelhodev",

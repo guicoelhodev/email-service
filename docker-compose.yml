@@ -21,7 +21,7 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
-    command: echo 'worker'
+    command: npm run worker
     environment:
       - REDIS_PORT=${REDIS_PORT}
       - REDIS_HOST=${REDIS_HOST}
