@@ -24,8 +24,7 @@ export class EmailWorker {
 		try {
 			console.log(`Processing email job for: ${data.to}`);
 
-			await new Promise((resolve) => setTimeout(resolve, 10000));
-
+			await new Promise(resolve => setTimeout(resolve, 5000))
 			const mailOptions = {
 				from: process.env.SMTP_FROM || process.env.SMTP_USER,
 				to: data.to,
