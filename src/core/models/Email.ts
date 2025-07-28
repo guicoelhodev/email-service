@@ -1,4 +1,4 @@
-interface EmailData {
+export interface EmailData {
 	id: string;
 	to: string;
 	subject: string;
@@ -7,5 +7,9 @@ interface EmailData {
 }
 
 export class Email {
-	constructor(public readonly data: EmailData) { }
+	constructor(private readonly data: EmailData) { }
+
+	getEmailData() {
+		return this.data;
+	}
 }
