@@ -19,8 +19,9 @@ export class BullMQWorkerAdapter implements JobProcessor {
 			},
 			{
 				connection: {
-					host: process.env.REDIS_HOST,
-					port: parseInt(process.env.REDIS_PORT!),
+					host: process.env.REDIS_HOST || "localhost",
+					port: parseInt(process.env.REDIS_PORT!) || 6379,
+					lazyConnect: true,
 				},
 			},
 		);

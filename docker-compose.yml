@@ -39,6 +39,6 @@ services:
     depends_on:
       - redis
   redis:
-    image: redis:7
+    image: redis:7-alpine
     ports:
       - "${REDIS_PORT}:6379"

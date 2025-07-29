@@ -8,8 +8,9 @@ export class BullMQQueueAdapter implements QueueService {
 	constructor(queueName: string) {
 		this.queue = new Queue(queueName, {
 			connection: {
-				host: process.env.REDIS_HOST,
-				port: parseInt(process.env.REDIS_PORT!),
+				host: process.env.REDIS_HOST || "localhost",
+				port: parseInt(process.env.REDIS_PORT!) || 6379,
+				lazyConnect: true,
 			},
 		});
 
