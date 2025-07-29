@@ -26,16 +26,12 @@
     // "moduleDetection": "auto",                        /* Control what method is used to detect module-format JS files. */
 
     /* Modules */
-    "module": "commonjs" 
-    "rootDir": "./src" 
-    "moduleResolution": "node" 
-    "baseUrl": "./src" 
+    "module": "commonjs",
+    "rootDir": "./src",
+    "moduleResolution": "node",
+    "baseUrl": "./src",
     "paths": {
-      "@/*": ["./*"],
-      "@/core/*": ["./core/*"],
-      "@/adapters/*": ["./adapters/*"],
-      "@/application/*": ["./application/*"],
-      "@/config/*": ["./config/*"]
+      "@/*": ["./*"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */
