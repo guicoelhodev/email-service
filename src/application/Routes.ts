@@ -8,15 +8,6 @@ export function setupRoutes(httpService: HttpService) {
 			statusCode: 200,
 			body: {
 				message: "Server works correctly",
-				envs: [
-					process.env.SMTP_HOST,
-					process.env.SMTP_USER,
-					process.env.SMTP_PASS,
-					process.env.SMTP_FROM,
-					process.env.PORT,
-					process.env.REDIS_PORT,
-					process.env.REDIS_HOST,
-				],
 			},
 		};
 	});
