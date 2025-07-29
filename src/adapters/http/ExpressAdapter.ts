@@ -19,7 +19,7 @@ export class ExpressAdapter implements HttpService {
 	}
 
 	async start(port: number): Promise<void> {
-		this.server = this.app.listen(port, () => {
+		this.server = this.app.listen(port, "0.0.0.0", () => {
 			console.log(`Server running on:`, port);
 		});
 	}
