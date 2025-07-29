@@ -3,18 +3,31 @@ services:
     build: .
     ports:
       - "${PORT}:${PORT}"
+    volumes:
+      - /app/node_modules
     environment:
       - PORT=${PORT}
       - REDIS_PORT=${REDIS_PORT}
       - REDIS_HOST=${REDIS_HOST}
-    depends_on:
-      - redis
+
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASS=${SMTP_PASS}
+      - SMTP_FROM=${SMTP_FROM}
   worker:
     build: .
-    command: npm run build:worker
+    command: npm run start:worker
     environment:
+      - PORT=${PORT}
       - REDIS_PORT=${REDIS_PORT}
       - REDIS_HOST=${REDIS_HOST}
+
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASS=${SMTP_PASS}
+      - SMTP_FROM=${SMTP_FROM}
+    volumes:
+      - /app/node_modules
     depends_on:
       - redis
   redis:
