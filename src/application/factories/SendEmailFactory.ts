@@ -1,4 +1,4 @@
-import { BullMQQueueAdapter } from "@/adapters/queue/BullMQQueueAdapter";
+import { BullMQQueueAdapter } from "@/adapters/driven/queue/BullMQQueueAdapter";
 import { EmailService } from "@/core/services/EmailService";
 import { EmailWebhookHandler } from "@/presentation/webhooks/EmailWebhookHandler";
 

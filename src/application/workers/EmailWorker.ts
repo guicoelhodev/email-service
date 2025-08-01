@@ -1,4 +1,4 @@
-import { BullMQWorkerAdapter } from "@/adapters/worker/BullMQWorkerAdapter";
+import { BullMQWorkerAdapter } from "@/adapters/driven/worker/BullMQWorkerAdapter";
 import { EmailData } from "@/core/models/Email";
 import { createTransport, Transporter } from "nodemailer";
 

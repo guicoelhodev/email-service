@@ -1,7 +1,7 @@
 import "dotenv/config";
-import { ExpressAdapter } from "./adapters/http/ExpressAdapter";
+import { ExpressAdapter } from "./adapters/driven/http/ExpressAdapter";
 import { setupRoutes } from "./application/Routes";
-import { BullBoardAdapter } from "./adapters/dashboard/BuildBoardAdapter";
+import { BullBoardAdapter } from "./adapters/driven/dashboard/BuildBoardAdapter";
 import { QueueRegistry } from "./shared/QueueRegistry";
 
 async function server() {
