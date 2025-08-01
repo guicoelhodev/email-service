@@ -1,6 +1,7 @@
 services:
   redis:
     image: redis:7-alpine
+    command: redis-server --replica-read-only no --appendonly yes
     ports:
       - "${REDIS_PORT}:6379"
     networks:
