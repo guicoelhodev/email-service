@@ -1,52 +1,36 @@
+import { NodemailerAdapter } from "@/adapters/driven/nodemailer/NodeMailerAdapter";
 import { BullMQWorkerAdapter } from "@/adapters/driven/worker/BullMQWorkerAdapter";
 import { EmailData } from "@/core/models/Email";
-import { createTransport, Transporter } from "nodemailer";
+import { EmailProvider } from "@/core/ports/EmailProvider";
 
 export class EmailWorker {
-	private worker: BullMQWorkerAdapter;
-	private transporter: Transporter;
+  private worker: BullMQWorkerAdapter;
 
-	constructor() {
-		this.worker = new BullMQWorkerAdapter("email");
+  constructor(private emailProvider: EmailProvider) {
+    this.worker = new BullMQWorkerAdapter("email");
+  }
 
-		this.transporter = createTransport({
-			host: process.env.SMTP_HOST,
-			port: 587,
-			secure: false, // true for 465, false for other ports
-			auth: {
-				user: process.env.SMTP_USER,
-				pass: process.env.SMTP_PASS,
-			},
-		});
-	}
+  private async handleEmailJob(data: EmailData): Promise<void> {
+    try {
+      console.log(`Processing email job for: ${data.to}`);
 
-	private async handleEmailJob(data: EmailData): Promise<void> {
-		try {
-			console.log(`Processing email job for: ${data.to}`);
+      const info = await this.emailProvider.sendEmail(data);
 
-			const mailOptions = {
-				from: process.env.SMTP_FROM || process.env.SMTP_USER,
-				to: data.to,
-				subject: data.subject,
-				html: data.body,
-			};
+      console.log(`Email sent successfully: ${info}, to: ${data.to}`);
+    } catch (error) {
+      console.error(`Failed to send email to ${data.to}:`, error);
+      throw error;
+    }
+  }
 
-			const info = await this.transporter.sendMail(mailOptions);
-			console.log(`Email sent successfully: ${info.messageId}, to: ${data.to}`);
-		} catch (error) {
-			console.error(`Failed to send email to ${data.to}:`, error);
-			throw error;
-		}
-	}
+  async start(): Promise<void> {
+    this.worker.process("email-job", this.handleEmailJob.bind(this));
+    await this.worker.start();
+    console.log("EmailWorker started");
+  }
 
-	async start(): Promise<void> {
-		this.worker.process("email-job", this.handleEmailJob.bind(this));
-		await this.worker.start();
-		console.log("EmailWorker started");
-	}
-
-	async stop(): Promise<void> {
-		await this.worker.stop();
-		console.log("EmailWorker stopped");
-	}
+  async stop(): Promise<void> {
+    await this.worker.stop();
+    console.log("EmailWorker stopped");
+  }
 }
