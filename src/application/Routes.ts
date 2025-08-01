@@ -1,16 +1,16 @@
 import { HttpService } from "@/core/ports/HttpService";
-import { SendEmailFactory } from "./factories/SendEmailFactory";
+import { makeEmailFactory } from "./factories/makeEmailFactory";
 
 export function setupRoutes(httpService: HttpService) {
-	const sendEmail = new SendEmailFactory().build();
-	httpService.addRoute("GET", "/", async () => {
-		return {
-			statusCode: 200,
-			body: {
-				message: "Server works correctly",
-			},
-		};
-	});
+  const sendEmail = makeEmailFactory();
+  httpService.addRoute("GET", "/", async () => {
+    return {
+      statusCode: 200,
+      body: {
+        message: "Server works correctly",
+      },
+    };
+  });
 
-	httpService.addRoute("POST", "/send-email", sendEmail.handleSendEmail);
+  httpService.addRoute("POST", "/send-email", sendEmail.handleSendEmail);
 }
