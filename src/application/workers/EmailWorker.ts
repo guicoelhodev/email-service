@@ -1,4 +1,3 @@
-import { NodemailerAdapter } from "@/adapters/driven/nodemailer/NodeMailerAdapter";
 import { BullMQWorkerAdapter } from "@/adapters/driven/worker/BullMQWorkerAdapter";
 import { EmailData } from "@/core/models/Email";
 import { EmailProvider } from "@/core/ports/EmailProvider";
